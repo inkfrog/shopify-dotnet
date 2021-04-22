@@ -51,6 +51,8 @@ namespace Teference.Shopify.Api
 
         [JsonIgnore]
         internal string AuthorizationTimestamp { get; set; }
+        [JsonIgnore]
+        internal string Host { get; set; }
 
         [JsonIgnore]
         internal string HmacHash { get; set; }

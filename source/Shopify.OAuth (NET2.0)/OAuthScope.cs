@@ -108,5 +108,15 @@ namespace Teference.Shopify.Api
         /// Write access to carrier service.
         /// </summary>
         write_shipping = 1 << 15,
+        
+        /// <summary>
+        /// Access to Inventory Level and Inventory Item
+        /// </summary>
+        write_inventory = 1 << 15,
+        
+        /// <summary>
+        /// Access to Location.
+        /// </summary>
+        read_locations = 1 << 16
     }
 }

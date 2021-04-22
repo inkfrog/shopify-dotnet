@@ -118,6 +118,7 @@ namespace Teference.Shopify.Api
             var authorizationCode = queryStringCollection[AppResources.CodeKeyword];
             var timestamp = queryStringCollection[AppResources.TimestampKeyword];
             var hmacHash = queryStringCollection[AppResources.HmacKeyword];
+            var host = queryStringCollection[AppResources.HostKeyword];
             if (string.IsNullOrEmpty(shopName)
                 || string.IsNullOrEmpty(authorizationCode)
                 || string.IsNullOrEmpty(timestamp)
@@ -126,8 +127,8 @@ namespace Teference.Shopify.Api
                 return new OAuthState { IsSuccess = false, Error = "Required parameters in query string missing" };
             }
 
-            return this.AuthorizeClient(shopName, authorizationCode, hmacHash, timestamp);
-        }
+            return this.AuthorizeClient(shopName, authorizationCode, hmacHash, timestamp, host);
+        } 
 
         /// <summary>
         /// Performs SHOPIFY OAUTH 2.0 authorization process based on shop access permission accepted.
@@ -145,7 +146,7 @@ namespace Teference.Shopify.Api
         /// <para>3. {Exception Type}: {Exception message} (for any exception).</para>
         /// </returns>
         /// <exception cref="ArgumentNullException">Throws argument null exception if input parameters are null or empty.</exception>
-        public OAuthState AuthorizeClient(string shopName, string authorizationCode, string hmacHash, string timestamp)
+        public OAuthState AuthorizeClient(string shopName, string authorizationCode, string hmacHash, string timestamp, string host)
         {
             if (string.IsNullOrEmpty(shopName))
             {
@@ -168,6 +169,11 @@ namespace Teference.Shopify.Api
             }
 
             var hashValidationResult = this.ValidateInstallResponse(new OAuthState { ShopName = shopName, AuthorizationCode = authorizationCode, HmacHash = hmacHash, AuthorizationTimestamp = timestamp });
+            if(!hashValidationResult)
+            {
+                //retry with host keyword
+                hashValidationResult = this.ValidateInstallResponse(new OAuthState { ShopName = shopName, AuthorizationCode = authorizationCode, HmacHash = hmacHash, AuthorizationTimestamp = timestamp, Host = host}, 1);
+            }
             if (!hashValidationResult)
             {
                 return new OAuthState { IsSuccess = false, Error = "HMAC signature validation failed" };
@@ -237,10 +243,14 @@ namespace Teference.Shopify.Api
             return hexStringBuild.ToString();
         }
 
-        private bool ValidateInstallResponse(OAuthState installState)
+        private bool ValidateInstallResponse(OAuthState installState, short retry = 0)
         {
             var queryStringBuilder = new QueryStringBuilder { StartsWith = null };
             queryStringBuilder.Add(AppResources.CodeKeyword, installState.AuthorizationCode);
+            if(retry == 1)
+            {
+                queryStringBuilder.Add(AppResources.HostKeyword, installState.Host);
+            }
             queryStringBuilder.Add(AppResources.ShopKeyword, installState.ShopName);
             queryStringBuilder.Add(AppResources.TimestampKeyword, installState.AuthorizationTimestamp);
             var secretKeyBytes = Encoding.UTF8.GetBytes(this.Configuration.SecretKey);

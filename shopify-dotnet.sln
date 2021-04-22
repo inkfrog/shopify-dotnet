@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopify.OAuth (NET20)", "so
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopify.OAuth (NET45)", "source\Shopify.OAuth (NET45)\Shopify.OAuth (NET45).csproj", "{8F66721C-7276-45B4-9A23-3A1CDA4CE206}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopify.OAuth.Tests", "unit-test\Shopify.OAuth.Tests\Shopify.OAuth.Tests.csproj", "{503FB14F-77F5-49E8-A86B-329BEBD91DBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{8F66721C-7276-45B4-9A23-3A1CDA4CE206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F66721C-7276-45B4-9A23-3A1CDA4CE206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F66721C-7276-45B4-9A23-3A1CDA4CE206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503FB14F-77F5-49E8-A86B-329BEBD91DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503FB14F-77F5-49E8-A86B-329BEBD91DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503FB14F-77F5-49E8-A86B-329BEBD91DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503FB14F-77F5-49E8-A86B-329BEBD91DBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{F7735012-821F-44D6-A0CB-3D96EE9FCB89} = {4966A980-89ED-4CA1-9A45-A1272E9BCBC0}
 		{D3D8073E-63AE-4558-BD1B-351D413F0F38} = {CF2E563C-EB77-403D-A722-146F73C1BF0D}
 		{8F66721C-7276-45B4-9A23-3A1CDA4CE206} = {CF2E563C-EB77-403D-A722-146F73C1BF0D}
+		{503FB14F-77F5-49E8-A86B-329BEBD91DBF} = {B19761DC-E3B9-4D17-854C-C6D442477118}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2E47CDC-35B5-4933-83A3-4273BDD1C8C2}

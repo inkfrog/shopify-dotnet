@@ -69,6 +69,6 @@ namespace Teference.Shopify.Api
         /// <para>3. {Exception Type}: {Exception message} (for any exception).</para>
         /// </returns>
         /// <exception cref="ArgumentNullException">Throws argument null exception if input parameters are null or empty.</exception>
-        OAuthState AuthorizeClient(string shopName, string authorizationCode, string hmacHash, string timestamp);
+        OAuthState AuthorizeClient(string shopName, string authorizationCode, string hmacHash, string timestamp, string host);
     }
 }
