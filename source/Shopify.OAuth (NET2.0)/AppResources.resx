@@ -162,4 +162,7 @@
   <data name="TimestampKeyword" xml:space="preserve">
     <value>timestamp</value>
   </data>
+  <data name="HostKeyword" xml:space="preserve">
+    <value>host</value>
+  </data>
 </root>
